@@ -1,0 +1,5 @@
+suites:
+    main:
+        namespace: JLcourier
+        psr4_prefix: JLcourier
+        src_path: app
