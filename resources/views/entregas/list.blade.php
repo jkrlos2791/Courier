@@ -6,9 +6,9 @@
         <div class="col-md-10 col-md-offset-1">
             <div class="row">
                 <h1>
-                    Nuevas Ordenes
-                    {{--<a href="#" class="btn btn-primary">
-                        Nueva orden                    </a>--}}
+                    Ordenes Recientes
+                    <a href="#" class="btn btn-primary">
+                        Nueva orden                    </a>
                 </h1>
 
                 <p class="label label-info news">
@@ -19,9 +19,9 @@
               <tr>
                 <th>Fecha</th>
                  <th>Nro. de Orden</th>
-                  <th>Cliente</th>
                   <th>Tipo</th>
                   <th>Tiempo</th>
+                  <th>Cliente</th>
                   <th>Nro. de Entregas</th>
                   <th>Estado</th>
                   <th>Ver</th>

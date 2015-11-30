@@ -28,7 +28,7 @@ return [
 	|
 	*/
 
-	'model' => 'JLcourier\User',
+	'model' => 'JLcourier\Entities\User',
 
 	/*
 	|--------------------------------------------------------------------------

@@ -13,10 +13,10 @@ class ItemEntregaTableSeeder extends BaseSeeder
     public function getDummyData(Generator $faker, array $customValues = array())
     {
         return [
-            'cantidad' => $faker->creditCardNumber,
-            'peso' => $faker->creditCardNumber,
-			'envio' => $faker->name,
-            'descripcion' => $faker->address,
+            'cantidad' => $faker->randomNumber($nbDigits = 1),
+            'peso' => $faker->randomNumber($nbDigits = 2),
+			'envio' => $faker->word,
+            'descripcion' => $faker->sentence($nbWords = 6),
             'entrega_id' => $this->getRandom('Entrega')->id,
             
         ];
@@ -24,7 +24,7 @@ class ItemEntregaTableSeeder extends BaseSeeder
 
     public function run()
     {
-        $this->createMultiple(50);
+        $this->createMultiple(600);
     }
 
 }

@@ -1,6 +1,6 @@
 <?php namespace JLcourier\Services;
 
-use JLcourier\User;
+use JLcourier\Entities\User;
 use Validator;
 use Illuminate\Contracts\Auth\Registrar as RegistrarContract;
 

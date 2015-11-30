@@ -3,8 +3,8 @@
 return array(
 
     'menu' => array(
-    'ordenes.ultimas' => 'Recientes',
-    'ordenes.detalle' => 'Clientes'
+    'ordenes.ultimas' => 'Ordenes',
+    'cliente.index' => 'Clientes'
 )
 
 );

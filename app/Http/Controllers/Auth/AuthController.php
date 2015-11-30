@@ -34,5 +34,15 @@ class AuthController extends Controller {
 
 		$this->middleware('guest', ['except' => 'getLogout']);
 	}
+    
+    public function redirectPath()
+	{
+		return '/';
+	}
+
+    public function getRegister()
+	{
+		return view('auth.login');
+	}
 
 }

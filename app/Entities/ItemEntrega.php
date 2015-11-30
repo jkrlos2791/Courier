@@ -1,9 +1,12 @@
 <?php namespace JLcourier\Entities;
 
-use Illuminate\Database\Eloquent\Model;
+class ItemEntrega extends Entity {
 
-class ItemEntrega extends Model {
-
-	//
+	public function entrega()
+    {
+    
+        return $this->belongsTo(Entrega::getClass());
+    
+    }
 
 }

@@ -15,7 +15,7 @@ class EntregaTableSeeder extends BaseSeeder
         return [
             'cliente_final' => $faker->name,
             'tipo_servicio' => $faker->address,
-			'destino' => $faker->name,
+			'destino' => $faker->city,
             'direccion_destino' => $faker->address,
 			'fecha_entrega' => $faker->date($format = 'd-m-Y', $max = 'now'),
             'hora' => $faker->time($format = 'H:i:s', $max = 'now'),
@@ -25,7 +25,7 @@ class EntregaTableSeeder extends BaseSeeder
             'sello_firma' => $faker->address,
 			'responsable_entrega' => $faker->name,
 			'observaciones' => $faker->name,
-            'estado' => $faker->address,
+            'estado' => $faker->randomElement(['En almacen', 'En ruta', 'Entregado']),
             'orden_servicio_id' => $this->getRandom('OrdenServicio')->id,
             
         ];
@@ -33,7 +33,7 @@ class EntregaTableSeeder extends BaseSeeder
 
     public function run()
     {
-        $this->createMultiple(50);
+        $this->createMultiple(250);
     }
 
 }

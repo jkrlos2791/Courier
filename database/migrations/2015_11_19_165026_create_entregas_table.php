@@ -29,7 +29,7 @@ class CreateEntregasTable extends Migration {
             $table->string('sello_firma');
 			$table->string('responsable_entrega');
 			$table->string('observaciones');
-			$table->enum('estado',['open','closed']);
+			$table->enum('estado',['En almacen','En ruta', 'Entregado']);
 			$table->timestamps();
 		});
 	}

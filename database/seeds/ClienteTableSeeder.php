@@ -22,7 +22,7 @@ class ClienteTableSeeder extends BaseSeeder
 
     public function run()
     {
-        $this->createMultiple(50);
+        $this->createMultiple(20);
     }
 
 }

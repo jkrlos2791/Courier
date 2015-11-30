@@ -6,7 +6,8 @@
      <div class="col-md-12 col-md-offset-1">
          <h1>
         Detalle de la orden
-        </h1>
+       @include('ordenes/partials/status', compact('orden'))
+         </h1>  
          </div>
      </div>
     
@@ -37,12 +38,13 @@
             <table class="table table-bordered">
               <tr>
                 <th>Cliente Final</th>
-                 <th>Destino</th>
-                  <th>Dirección</th>
+                 <th>Dirección</th>
+                  <th>Destino</th>
                   <th>Recepcionado por</th>
+                  <th>Nro. de Items</th>
                   <th>Entregado por</th>
-                  <th>Observaciones</th>
                   <th>Estado</th>
+                  <th>Ver</th>
                     </tr>
             
             @foreach ($orden->entregas as $entrega)
@@ -50,12 +52,17 @@
             <tr>
      
     <td width="500">{{ $entrega->cliente_final }}</td>
+   <td width="500">{{ $entrega->direccion_destino }}</td>
      <td width="500">{{ $entrega->destino }}</td>
-     <td width="500">{{ $entrega->direccion_destino }}</td>
      <td width="500">{{ $entrega->recepcionado_por }}</td>
+      <td width="500">{{ count($entrega->items) }} items</td>
     <td width="500">{{ $entrega->responsable_entrega }}</td>
-    <td width="500">{{ $entrega->observaciones }}</td> 
-    <td width="500">{{ $entrega->estado }}</td>
+     <td width="500"> @include('entregas/partials/status', compact('entrega'))</td>
+    <td width="500"><a href="{{ route('ordenes.detalleEntrega', $entrega) }}">
+                            <span class="comments-count">
+                                Detalle
+                            </span>
+                        </a></td>
      
 </tr>
             

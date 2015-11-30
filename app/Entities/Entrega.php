@@ -8,5 +8,12 @@ class Entrega extends Entity {
         return $this->belongsTo(OrdenServicio::getClass());
     
     }
+    
+    public function items()
+    {
+    
+        return $this->hasMany(ItemEntrega::getClass());
+    
+    }
 
 }

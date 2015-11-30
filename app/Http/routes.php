@@ -11,7 +11,20 @@
 |
 */
 
-Route::get('/', [
+Route::get('/', 'WelcomeController@index');
+
+// Autenticación
+
+Route::controllers([
+	'auth' => 'Auth\AuthController',
+	'password' => 'Auth\PasswordController',
+]);
+
+Route::group(['middleware' => 'auth'], function() {
+    
+// Modulo de orden
+    
+Route::get('/ordenes', [
     'as' => 'ordenes.ultimas',
     'uses' => 'OrdenController@ultimas',
                 ]);
@@ -21,9 +34,27 @@ Route::get('/orden/{id}', [
     'uses' => 'OrdenController@detalle',
                 ]);
 
-Route::controllers([
-	'auth' => 'Auth\AuthController',
-	'password' => 'Auth\PasswordController',
-]);
+Route::get('/entrega/{id}', [
+    'as' => 'ordenes.detalleEntrega',
+    'uses' => 'OrdenController@detalleEntrega',
+                ]);
 
-Route::resource('user', 'UserController');
+// Crear orden
+
+Route::get('/nueva_orden', [
+    'as' => 'ordenes.create',
+    'uses' => 'OrdenController@create',
+                ]);
+
+Route::post('/nueva_orden', [
+    'as' => 'ordenes.store',
+    'uses' => 'OrdenController@store',
+                ]);
+    
+// Mantenimientos
+
+Route::resource('cliente', 'ClienteController');
+    
+});
+
+

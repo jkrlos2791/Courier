@@ -19,9 +19,9 @@ class CreateOrdenServiciosTable extends Migration {
             $table->foreign('cliente_id')->references('id')->on('clientes')->onDelete('cascade');
             $table->timestamp('fecha_inicio');
             $table->integer('nro_orden');
-            $table->enum('tipo', ['local', 'nacional']);
+            $table->enum('tipo', ['Local', 'Nacional']);
             $table->enum('tiempo', ['24 horas', '48 horas', '2 dias']);
-            $table->enum('estado', ['en almacen', 'en ruta', 'finalizado']);
+            $table->enum('estado', ['En proceso', 'Despachado']);
 			$table->timestamps();
 		});
 	}

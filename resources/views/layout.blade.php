@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Shangel by JLcourier</title>
+    <title>Shangel by JL Smart Solutions</title>
 
     {!! Html::style('/assets/css/style.css') !!}
     <!-- Fonts -->
@@ -34,22 +34,15 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="http://shangelperu.com.pe" target="_blank">shangelperu.com.pe</a>
+                    <a class="navbar-brand" href="{{ url('/ordenes') }}">shangelperu.com.pe</a>
                 </div>
 
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
                 {!! Html::menu(config('courier.menu')) !!}
 
-
-                    <ul class="nav navbar-nav navbar-right">
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Juan Bazán <span class="caret"></span></a>
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a href="http://teachme.dev/auth/logout">Logout</a></li>
-                            </ul>
-                        </li>
-                    </ul>
+                   @include('layout/login')
+                    
                 </div>
             </div>
         </div>
