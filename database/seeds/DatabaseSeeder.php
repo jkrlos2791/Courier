@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder {
              'guia_clientes',
              'item_entregas',
              'guia_transportes',
+             'contactos',
             
         ));
         $this->call('UserTableSeeder');
@@ -29,6 +30,7 @@ class DatabaseSeeder extends Seeder {
         $this->call('GuiaClienteTableSeeder');
         $this->call('ItemEntregaTableSeeder');
         $this->call('GuiaTransporteTableSeeder');
+        $this->call('ContactoTableSeeder');
     }
 
     public function truncateTables(array $tables)

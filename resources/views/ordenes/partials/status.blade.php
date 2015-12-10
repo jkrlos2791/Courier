@@ -1,3 +1,3 @@
-    <span {!! Html::classes(['label label-orden1 absolute', 'orden3' => $orden->estado == 'Despachado']) !!} >
+    <span {!! Html::classes(['label label-success', 'label-warning' => $orden->estado == 'En proceso']) !!} >
                     {{ $orden->estado }}
     </span>

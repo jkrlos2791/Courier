@@ -17,8 +17,8 @@ class CreateClientesTable extends Migration {
 			$table->increments('id');
             $table->string('nombre');
             $table->string('direccion');
-            $table->string('ruc')->unique();
-            $table->string('banco');
+            $table->string('ruc');
+            $table->string('banco')->nullable();
 			$table->timestamps();
 		});
 	}

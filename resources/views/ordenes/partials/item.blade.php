@@ -13,7 +13,7 @@
      <td width="500">
          @include('ordenes/partials/status', compact('orden'))
     </td>
-     <td width="500"><a href="{{ route('ordenes.detalle', $orden) }}">
+     <td width="500"><a class="btn btn-primary" href="{{ route('ordenes.detalle', $orden) }}">
                             <span class="comments-count">
                                 Detalle
                             </span>

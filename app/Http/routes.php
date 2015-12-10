@@ -11,12 +11,18 @@
 |
 */
 
-Route::get('/', 'WelcomeController@index');
+//Route::get('/', 'WelcomeController@index');
 
 // Autenticación
 
+Route::get('auth/login', 'Auth\AuthController@getLogin');
+
+Route::post('auth/login', 'Auth\AuthController@postLogin');
+
+Route::get('auth/logout', 'Auth\AuthController@getLogout');
+
 Route::controllers([
-	'auth' => 'Auth\AuthController',
+	//'auth' => 'Auth\AuthController',
 	'password' => 'Auth\PasswordController',
 ]);
 
@@ -24,9 +30,14 @@ Route::group(['middleware' => 'auth'], function() {
     
 // Modulo de orden
     
-Route::get('/ordenes', [
+Route::get('/', [
     'as' => 'ordenes.ultimas',
     'uses' => 'OrdenController@ultimas',
+                ]);
+
+Route::get('/ordenes_proceso', [
+    'as' => 'ordenes.enProceso',
+    'uses' => 'OrdenController@enProceso',
                 ]);
 
 Route::get('/orden/{id}', [
@@ -39,8 +50,6 @@ Route::get('/entrega/{id}', [
     'uses' => 'OrdenController@detalleEntrega',
                 ]);
 
-// Crear orden
-
 Route::get('/nueva_orden', [
     'as' => 'ordenes.create',
     'uses' => 'OrdenController@create',
@@ -51,9 +60,35 @@ Route::post('/nueva_orden', [
     'uses' => 'OrdenController@store',
                 ]);
     
-// Mantenimientos
+Route::get('/exportar_ordenes', [
+    'as' => 'ordenes.exportar',
+    'uses' => 'OrdenController@exportar',
+                ]);   
+    
+// Modulo de cliente
 
 Route::resource('cliente', 'ClienteController');
+    
+Route::get('/exportar_clientes', [
+    'as' => 'clientes.exportar',
+    'uses' => 'ClienteController@exportar',
+                ]);    
+
+Route::get('/importar_clientes', [
+    'as' => 'clientes.importar',
+    'uses' => 'ClienteController@importar',
+                ]);  
+
+// Modulo de usuario
+
+Route::resource('user', 'UserController');
+    
+Route::post('/nuevo_usuario', [
+    'as' => 'users.registrar',
+    'uses' => 'UserController@postRegister',
+                ]);
+    
+Route::get('/probando', 'HomeController@index');    
     
 });
 

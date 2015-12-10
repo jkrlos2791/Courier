@@ -2,10 +2,56 @@
 
 use JLcourier\Http\Requests\ClienteForm;
 use JLcourier\Http\Controllers\Controller;
-
-use Illuminate\Http\Request;
+use Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ClienteController extends Controller {
+    
+		public function importar()
+    {
+    	Excel::load('Clientes.xlsx', function($reader) {
+ 
+     		foreach ($reader->get() as $cliente) {
+     			\JLcourier\Entities\Cliente::create([
+     				'id' => $cliente->id,
+                    'nombre' => $cliente->nombre,
+     				'ruc' =>$cliente->ruc,
+     				'banco' =>$cliente->banco
+     			]);
+      		}
+		});
+            
+        Excel::load('Ordenes.xlsx', function($reader) {
+ 
+     		foreach ($reader->get() as $orden) {
+     			\JLcourier\Entities\OrdenServicio::create([
+     				'id' => $orden->id,
+                    'cliente_id' => $orden->cliente_id,
+     				'fecha_inicio' =>$orden->fecha_inicio,
+     				'nro_orden' =>$orden->nro_orden,
+                    'tipo' =>$orden->tipo,
+                    'tiempo' =>$orden->tiempo,
+                    'estado' =>$orden->estado
+     			]);
+      		}
+		});  
+            
+		return \JLcourier\Entities\Cliente::all();
+    }
+    
+    public function exportar()
+	{
+		Excel::create('Clientes', function($excel) {
+ 
+            $excel->sheet('Clientes', function($sheet) {
+ 
+                $clientes = \JLcourier\Entities\Cliente::all();
+ 
+                $sheet->fromArray($clientes);
+ 
+            });
+        })->export('xls');
+	}
 
 	/**
 	 * Display a listing of the resource.
@@ -14,9 +60,7 @@ class ClienteController extends Controller {
 	 */
 	public function index()
 	{
-		{
 		 return view("clientes.index")->with('clientes', \JLcourier\Entities\Cliente::paginate(10)->setPath('cliente'));
-		}
 	}
 
 	/**
@@ -26,9 +70,7 @@ class ClienteController extends Controller {
 	 */
 	public function create()
 	{
-		{
 		return view("clientes.createUpdate");
-		}
 	}
 
 	/**
@@ -49,8 +91,18 @@ class ClienteController extends Controller {
 	$cliente->banco = \Request::input('banco');
  
 	$cliente->save();
- 
+          
+    foreach (Request::get('contacto') as $key => $val) 
+    {
+        $contacto = new \JLcourier\Entities\Contacto;
+        $contacto->contacto = \Request::input("contacto.$key");
+        $contacto->fijo = \Request::input("fijo.$key");
+        $contacto->celular = \Request::input("celular.$key");
+        $contacto = $cliente->contactos()->save($contacto);
+    } 
+        
 	return redirect('cliente/create')->with('message', 'Cliente saved');
+        
 	}
 
 	/**

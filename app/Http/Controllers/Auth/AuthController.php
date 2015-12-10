@@ -40,9 +40,4 @@ class AuthController extends Controller {
 		return '/';
 	}
 
-    public function getRegister()
-	{
-		return view('auth.login');
-	}
-
 }

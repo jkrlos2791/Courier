@@ -1,5 +1,5 @@
-    <span {!! Html::classes(['label label-orden1 absolute', 
-          'orden2' => $entrega->estado == 'En ruta', 
-        'orden3' => $entrega->estado == 'Entregado']) !!} >
+    <span {!! Html::classes(['label label-default', 
+          'label-primary' => $entrega->estado == 'En ruta', 
+        'label-success' => $entrega->estado == 'Entregado']) !!} >
                     {{ $entrega->estado }}
     </span>

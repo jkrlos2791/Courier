@@ -2,6 +2,8 @@
 
 class OrdenServicio extends Entity {
     
+    protected $fillable = ['id', 'cliente_id', 'fecha_inicio', 'nro_orden', 'tipo', 'tiempo', 'estado'];
+    
     public function getDates()
     {
     return ['created_at', 'fecha_inicio'];

@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateOrdenServiciosTable extends Migration {
+class CreateContactosTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,16 +12,14 @@ class CreateOrdenServiciosTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('orden_servicios', function(Blueprint $table)
+		Schema::create('contactos', function(Blueprint $table)
 		{
 			$table->increments('id');
             $table->integer('cliente_id')->unsigned()->index();
             $table->foreign('cliente_id')->references('id')->on('clientes')->onDelete('cascade');
-            $table->timestamp('fecha_inicio');
-            $table->string('nro_orden');
-            $table->enum('tipo', ['Local', 'Nacional']);
-            $table->string('tiempo');
-            $table->enum('estado', ['En proceso', 'Despachado']);
+            $table->string('contacto');
+            $table->string('fijo');
+            $table->string('celular');
 			$table->timestamps();
 		});
 	}
@@ -33,7 +31,7 @@ class CreateOrdenServiciosTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('orden_servicios');
+		Schema::drop('contactos');
 	}
 
 }

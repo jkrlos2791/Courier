@@ -2,19 +2,29 @@
 
 use JLcourier\Http\Requests\UserForm;
 use JLcourier\Http\Controllers\Controller;
-
 use Illuminate\Http\Request;
+use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
+use Illuminate\Contracts\Auth\Guard;
+use Illuminate\Contracts\Auth\Registrar;
 
 class UserController extends Controller {
 
-	/**
+	use AuthenticatesAndRegistersUsers;
+    
+    public function __construct(Guard $auth, Registrar $registrar)
+	{
+		$this->auth = $auth;
+		$this->registrar = $registrar;
+	}
+    
+    /**
 	 * Display a listing of the resource.
 	 *
 	 * @return Response
 	 */
-	public function index(Request $request)
+	public function index()
 	{
-        return view("users.index")->with('users', \JLcourier\Entities\User::name($request->get('name'))->paginate(8)->setPath('user'));
+        return view("users.index")->with('users', \JLcourier\Entities\User::paginate(10)->setPath('user'));
 	}
 
 	/**
@@ -24,7 +34,7 @@ class UserController extends Controller {
 	 */
 	public function create()
 	{
-		 return view("users.createUpdate");
+		 return view("users.create");
 	}
 
 	/**
@@ -66,7 +76,7 @@ class UserController extends Controller {
 	 */
   public function edit($id)
     {
-        return view('users.createUpdate')->with('user', \JLcourier\Entities\User::find($id));
+        return view('users.update')->with('user', \JLcourier\Entities\User::find($id));
     }
 
 	/**
@@ -84,8 +94,6 @@ class UserController extends Controller {
  
 	$user->email = \Request::input('email');
     
-    $user->password = \Request::input('password');
- 
 	$user->save();
  
 	return redirect()->route('user.edit', ['user' => $id])->with('message', 'User updated');
@@ -105,6 +113,22 @@ class UserController extends Controller {
 	$user->delete();
  
 	return redirect()->route('user.index')->with('message', 'User deleted');
+	}
+    
+	public function postRegister(Request $request)
+	{
+		$validator = $this->registrar->validator($request->all());
+
+		if ($validator->fails())
+		{
+			$this->throwValidationException(
+				$request, $validator
+			);
+		}
+
+		$this->registrar->create($request->all());
+
+		 return view("users.index")->with('users', \JLcourier\Entities\User::paginate(10)->setPath('user'));
 	}
 
 }

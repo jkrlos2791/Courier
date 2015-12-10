@@ -2,10 +2,19 @@
 
 class Cliente extends Entity {
 
-	public function ordenes()
+	protected $fillable = ['id', 'nombre', 'direccion', 'ruc', 'banco'];
+    
+    public function ordenes()
     {
     
         return $this->hasMany(OrdenServicio::getClass());
+    
+    }
+    
+    public function contactos()
+    {
+    
+        return $this->hasMany(Contacto::getClass());
     
     }
 

@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('layout2')
 
 @section('content')
 <div class="container">
@@ -58,7 +58,7 @@
       <td width="500">{{ count($entrega->items) }} items</td>
     <td width="500">{{ $entrega->responsable_entrega }}</td>
      <td width="500"> @include('entregas/partials/status', compact('entrega'))</td>
-    <td width="500"><a href="{{ route('ordenes.detalleEntrega', $entrega) }}">
+    <td width="500"><a class="btn btn-primary" href="{{ route('ordenes.detalleEntrega', $entrega) }}">
                             <span class="comments-count">
                                 Detalle
                             </span>

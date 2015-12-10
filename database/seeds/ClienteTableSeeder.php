@@ -15,8 +15,8 @@ class ClienteTableSeeder extends BaseSeeder
         return [
             'nombre' => $faker->name,
             'direccion' => $faker->address,
-            'ruc' => $faker->name,
-			'banco' => $faker->name,
+            'ruc' => $faker->randomNumber(8),
+			'banco' => $faker->randomElement(['BCP', 'Continental', 'Interbank']),
         ];
     }
 
