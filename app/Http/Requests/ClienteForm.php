@@ -29,8 +29,8 @@ class ClienteForm extends Request {
 	{
 		return [
 			'ruc.required' => 'El campo nombre es requerido.',
-			'ruc.min' => 'El nombre no puede tener menos de 11 caracteres.',
-			'ruc.max' => 'El nombre no puede tener mas de 11 caracteres.',
+			'ruc.min' => 'El ruc no puede tener menos de 11 caracteres.',
+			'ruc.max' => 'El ruc no puede tener mas de 11 caracteres.',
 		];
 	}
 

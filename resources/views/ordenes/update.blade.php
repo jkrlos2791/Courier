@@ -17,13 +17,13 @@
 				@if (Session::has('message'))
 				    <div class="alert alert-success">{{ Session::get('message') }}</div>
 				@endif
-				<div class="panel-body">   
-                    {!! Form::open(['route' => 'ordenes.store']) !!}           
+				<div class="panel-body">
+                    {!! Form::model($orden, ['route' => ['ordenes.update', $orden->id], 'method' => 'patch']) !!}  
 							<div class="form-group">
-								<label>Fecha</label>{!! Form::date('fecha_inicio', $fecha , ["class" => "form-control"]) !!}
+								<label>Fecha</label>{!! Form::date('fecha_inicio', null , ["class" => "form-control"]) !!}
 							</div>
 	                        <div class="form-group">
-								<label>Nro. de Orden</label>{!! Form::text('nro_orden', $orden_id , ["class" => "form-control", 'readonly']) !!}
+								<label>Nro. de Orden</label>{!! Form::text('nro_orden', null , ["class" => "form-control", 'readonly']) !!}
 							</div>
                       	    <div class="form-group">
 								<label>Cliente</label>{!! Form::select('cliente_id', ['Seleccione...']+$clientes , null, ["class" => "form-control"]) !!}

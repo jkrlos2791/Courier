@@ -4,7 +4,8 @@
 	<div class="row">
 		<div class="col-md-8 col-md-offset-1">
                      <h3>
-                    Cliente
+                    Entrega
+                         @include('ordenes/partials/nro_orden', compact('orden'))
                 </h3>
             <div class="panel panel-default">
                 @if($errors->has())
@@ -17,41 +18,41 @@
 				@if (Session::has('message'))
 				    <div class="alert alert-success">{{ Session::get('message') }}</div>
 				@endif
-				<div class="panel-body">
-                @if(isset($cliente))
-                    {!! Form::model($cliente, ['route' => ['cliente.update', $cliente->id], 'method' => 'patch']) !!}
-                @else    
-                    {!! Form::open(['route' => 'cliente.store']) !!}
-                @endif    
+				<div class="panel-body"> 
+                    {!! Form::model($orden, ['route' => ['entregas.store', $orden->id], 'method' => 'patch']) !!}          
 							<div class="form-group">
-								<label>Nombre</label>{!! Form::text('nombre', null, ["class" => "form-control"]) !!}
+								<label>Cliente Final</label>{!! Form::text('cliente_final', null , ["class" => "form-control"]) !!}
 							</div>
 	                        <div class="form-group">
-								<label>Direccion</label>{!! Form::text('direccion', null, ["class" => "form-control"]) !!}
+								<label>Dirección</label>{!! Form::text('direccion_destino', null , ["class" => "form-control"]) !!}
 							</div>
                       	    <div class="form-group">
-								<label>Ruc</label>{!! Form::text('ruc', null, ["class" => "form-control"]) !!}
+								<label>Destino</label>{!! Form::text('destino', null , ["class" => "form-control"]) !!}
 							</div>	
 							<div class="form-group">
-								<label>Banco</label>{!! Form::select('banco', array('BCP' => 'BCP', 'BBVA Continental' => 'BBVA Continental',                                                                                                'Interbank' => 'Interbank', 'Scotiabank' => 'Scotiabank'), null,                                                                                          ["class" => "form-control"]) !!}
+								<label>Recepcionado por</label>{!! Form::text('recepcionado_por', null , ["class" => "form-control"]) !!}
 							</div>
+<div class="form-group">
+								<label>Entregado por</label>{!! Form::text('responsable_entrega', null , ["class" => "form-control"]) !!}
+							</div>	
                     <a class="btn btn-primary" href="javascript:void(0)" id="addInput">
 				 <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
 				  Añadir
 			    </a>
 			     <br/>
                     <br/>
-                    <table class="table table-bordered" id="dynamicDiv">
+                    <table class="table table-bordered" id="items">
 				        <tr>
-                            <th>Contacto</th>
-                            <th>Fijo</th>
-                            <th>Celular</th>
-                            <th>Eliminar</th>
+                            <th>Cantidad</th>
+                            <th>Peso</th>
+                            <th>Envio</th>
+                            <th>Descripción</th>
                         </tr> 
                         <tr>
-			                  <td><input class="form-control" type="text" placeholder="Type something" name="contacto[]" /></td>
-                             <td><input class="form-control" type="text" placeholder="Type something" name="fijo[]" /></td>
-                             <td> <input class="form-control" type="text" placeholder="Type something" name="celular[]" /></td>
+			                  <td><input class="form-control" type="text" placeholder="" name="cantidad[]" /></td>
+                             <td><input class="form-control" type="text" placeholder="" name="peso[]" /></td>
+                             <td> <input class="form-control" type="text" placeholder="" name="envio[]" /></td>
+                            <td> <input class="form-control" type="text" placeholder="" name="descripcion[]" /></td>
 			                   <td> <a class="btn btn-danger" href="javascript:void(0)" id="remInput">
 			        	             <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
 					               </a></td>
@@ -66,6 +67,11 @@
             <br/>
             <br/>
             <br/>
+            <br/>
+            <br/>
+            <br/>
+             <br/>
+             <br/>
 		</div>      
 	</div>
     </div>

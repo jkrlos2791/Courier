@@ -151,6 +151,8 @@ return [
 		'JLcourier\Providers\EventServiceProvider',
 		'JLcourier\Providers\RouteServiceProvider',
         'JLcourier\Providers\HtmlServiceProvider',
+        'JLcourier\Providers\ViewServiceProvider',
+        
 
 	],
 

@@ -1,13 +1,13 @@
-@extends('layout')
+@extends('layout2')
 
 @section('content')
 <div class="container">
      <div class="row">
      <div class="col-md-12 col-md-offset-1">
-         <h1>
-        Detalle de la entrega
+         <h3>
+        Items
         @include('entregas/partials/status', compact('entrega'))
-        </h1>
+        </h3>
          </div>
      </div>
     
@@ -41,8 +41,8 @@
 
             <tr>
      
-    <td width="500">{{ $item->cantidad }} unidades</td>
-     <td width="500">{{ $item->peso }} kg</td>
+    <td width="100">{{ $item->cantidad }} unidades</td>
+     <td width="100">{{ $item->peso }} kg</td>
      <td width="500">{{ $item->envio }}</td>
      <td width="500">{{ $item->descripcion }}</td>
      
@@ -51,7 +51,28 @@
             @endforeach
                 
                 </table>
-
+<br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
         </div>
     </div>
 </div>

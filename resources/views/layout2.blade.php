@@ -19,27 +19,27 @@
       <div class="container-fluid display-table">
       <div class="row display-table-row">
           <!-- side menu -->
-          <div class="col-md-2 display-table-cell valign-top" id="side-menu">
-          <h1>JL Courier</h1>
+          <div class="col-md-2 col-sm-1 hidden-xs display-table-cell valign-top" id="side-menu">      
+         <img class="hidden-xs hidden-sm" border="0" height="49" width="179" src="{{asset('assets/img/shangel_logo.jpg')}}">
           <ul>
               <li class="link active">
               <a href="#">
                   <span class="glyphicon glyphicon-th" aria-hidden="true">
                   
                   </span>
-                  <span>Dashboard</span>
+                  <span class="hidden-sm hidden-xs">Dashboard</span>
                   </a>
               </li>
               <li class="link">
               <a href="#collapse-orden" data-toggle="collapse" aria-controls="colapse-orden">
                   <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
-                  <span>Ordenes</span>
+                  <span class="hidden-sm hidden-xs">Ordenes</span>
                   {{-- <span class="label label-success pull-right">20</span> --}}
                   </a>
                   <ul class="collapse collapseable" id="collapse-orden">
                       <li><a href="{{ url('/') }}">Ver Ordenes</a></li>
                       <li><a href="{{ url('/ordenes_proceso') }}">En proceso
-                          <li><a href="#">Nueva Orden</a></li>
+                          <li><a href="{{ route('ordenes.create') }}">Nueva Orden</a></li>
                           {{-- <span class="label label-warning pull-right">{{ Auth::user()->name }}</span></a></li> --}}
                       <li><a href="{{ url('/exportar_ordenes') }}">Exportar Ordenes</a></li>
                   </ul>
@@ -47,7 +47,7 @@
                          <li class="link">
               <a href="#collapse-cliente" data-toggle="collapse" aria-controls="colapse-cliente">
                   <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-                  <span>Clientes</span>
+                  <span class="hidden-sm hidden-xs">Clientes</span>
                   </a>
                   <ul class="collapse collapseable" id="collapse-cliente">
                       <li><a href="{{ url('/cliente') }}">Ver Clientes</a></li>
@@ -58,7 +58,7 @@
                <li class="link">
               <a href="#collapse-usuario" data-toggle="collapse" aria-controls="colapse-usuario">
                   <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
-                  <span>Usuarios</span>
+                  <span class="hidden-sm hidden-xs">Usuarios</span>
                   </a>
                   <ul class="collapse collapseable" id="collapse-usuario">
                       <li><a href="{{ url('/user') }}">Ver Usuarios</a></li>
@@ -90,15 +90,23 @@
                </ul>    
           </div>
           <!-- main content area -->
-          <div class="col-md-10 display-table-cell valign-top">
+          <div class="col-md-10 col-sm-11 display-table-cell valign-top">
 <div class="row">
     <header id="nav-header" class="clearfix">
     <div class="col-md-5">
-        {{--<input type="text" id="header-search-field" placeholder="Search for something...">--}}
+        <nav class="navbar-default pull-left">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="offcanvas" data-target="#side-menu" aria-expanded="false">
+       <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+        </nav>
+        {{--<input type="text" class="hidden-sm hidden-xs" id="header-search-field" placeholder="Search for something...">--}}
         </div>
         <div class="col-md-7">
         <ul class="pull-right">
-            <li id="welcome">Hola, {{ Auth::user()->name }}</li>
+            <li id="welcome" class="hidden-xs">Hola, {{ Auth::user()->name }}</li>
             {{--<li class="fixed-width">
             <a href="#">
                 <span class="glyphicon glyphicon-bell" aria-hidden="true"></span>
@@ -136,6 +144,11 @@
 <!-- Scripts -->
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/js/bootstrap.min.js"></script>
+<link href="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.1/css/select2.min.css" rel="stylesheet" />
+<script src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.1/js/select2.min.js"></script>
+<script type="text/javascript">
+  $('select').select2();
+</script>      
 <script>
 $(function () {
 			    var scntDiv = $('#dynamicDiv');
@@ -155,6 +168,26 @@ $(function () {
 			        return false;
 			    });
 			});
-    </script>      
+$(function () {
+			    var scntDiv = $('#items');
+			    $(document).on('click', '#addInput', function () {
+			        $('<tr>'+
+                        '<td><input class="form-control" type="text" id="inputeste" size="20" value="" placeholder="" name="cantidad[]" /></td> '+
+		        		'<td><input class="form-control" type="text" id="inputeste" size="20" value="" placeholder="" name="peso[]" /> </td>'+
+                        '<td><input class="form-control" type="text" id="inputeste" size="20" value="" placeholder="" name="envio[]" /></td> '+
+                      '<td><input class="form-control" type="text" id="inputeste" size="20" value="" placeholder="" name="descripcion[]" /></td> '+
+		        		'<td><a class="btn btn-danger" href="javascript:void(0)" id="remInput">'+
+							'<span class="glyphicon glyphicon-minus" aria-hidden="true"></span> '+
+		        		'</a></td>'+
+					'</tr>').appendTo(scntDiv);
+			        return false;
+			    });
+			    $(document).on('click', '#remInput', function () {
+		            $(this).parents('tr').remove();
+			        return false;
+			    });
+			});    
+    </script>
+{!! Html::script('/assets/js/default.js') !!}
   </body>
 </html>

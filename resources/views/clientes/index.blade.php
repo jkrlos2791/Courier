@@ -5,9 +5,9 @@
         <div class="col-md-10 col-md-offset-1">
     <div class="row">
                     <div class="col-md-12">
-                        <h1>
+                        <h3>
                     Clientes
-                </h1>
+                </h3>
 	@if (Session::has('message'))
 	        <div class="alert alert-success">{{ Session::get('message') }}</div>
 	@endif 
@@ -25,8 +25,8 @@
                   <tr>
                     <td width="500">{{ $cliente->nombre }}</td>
                     <td width="500">{{ $cliente->direccion }}</td>
-					<td width="500">{{ $cliente->ruc }}</td>
-                    <td width="500">{{ $cliente->banco }}</td>
+					<td width="100">{{ $cliente->ruc }}</td>
+                    <td width="300">{{ $cliente->banco }}</td>
                     <td width="60" align="center">
                       {!! Html::link(route('cliente.edit', $cliente->id), 'Editar', array('class' => 'btn btn-primary')) !!}
                     </td>
@@ -44,7 +44,30 @@
       @endif
 		</div>
 	</div>
-            <hr>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
             </div>
         </div>
 </div>

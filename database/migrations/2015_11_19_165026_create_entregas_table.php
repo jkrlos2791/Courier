@@ -24,7 +24,7 @@ class CreateEntregasTable extends Migration {
             $table->date('fecha_entrega');
             $table->time('hora');
 			$table->string('recepcionado_por');
-            $table->string('dni')->unique();
+            $table->string('dni');
 			$table->string('cargo');
             $table->string('sello_firma');
 			$table->string('responsable_entrega');

@@ -3,9 +3,9 @@
 <div class="container">
 	<div class="row">
 		<div class="col-md-6 col-md-offset-1">
-                     <h1>
+                     <h3>
                     Usuario
-                </h1>
+                </h3>
             <div class="panel panel-default">
                 @if($errors->has())
                     <div class='alert alert-danger'>
@@ -35,6 +35,25 @@
 					{!! Form::close() !!}
 				</div>
 			</div>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+             <br/>
+            <br/>
+            <br/>
 		</div>
 	</div>
     </div>

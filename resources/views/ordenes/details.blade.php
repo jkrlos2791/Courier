@@ -3,11 +3,13 @@
 @section('content')
 <div class="container">
      <div class="row">
-     <div class="col-md-12 col-md-offset-1">
-         <h1>
-        Detalle de la orden
+     <div class="col-md-10 col-md-offset-1">
+         <h3>
+        Entregas
        @include('ordenes/partials/status', compact('orden'))
-         </h1>  
+             <a href="{{ route('entregas.create', $orden) }}" class="btn btn-primary pull-right">Nueva Entrega</a>
+         </h3> 
+         
          </div>
      </div>
     
@@ -38,7 +40,6 @@
             <table class="table table-bordered">
               <tr>
                 <th>Cliente Final</th>
-                 <th>Dirección</th>
                   <th>Destino</th>
                   <th>Recepcionado por</th>
                   <th>Nro. de Items</th>
@@ -51,14 +52,13 @@
 
             <tr>
      
-    <td width="500">{{ $entrega->cliente_final }}</td>
-   <td width="500">{{ $entrega->direccion_destino }}</td>
-     <td width="500">{{ $entrega->destino }}</td>
-     <td width="500">{{ $entrega->recepcionado_por }}</td>
-      <td width="500">{{ count($entrega->items) }} items</td>
-    <td width="500">{{ $entrega->responsable_entrega }}</td>
-     <td width="500"> @include('entregas/partials/status', compact('entrega'))</td>
-    <td width="500"><a class="btn btn-primary" href="{{ route('ordenes.detalleEntrega', $entrega) }}">
+    <td width="550">{{ $entrega->cliente_final }}</td>
+     <td width="150">{{ $entrega->destino }}</td>
+     <td width="300">{{ $entrega->recepcionado_por }}</td>
+      <td width="250">{{ count($entrega->items) }} items</td>
+    <td width="300">{{ $entrega->responsable_entrega }}</td>
+     <td width="100"> @include('entregas/partials/status', compact('entrega'))</td>
+    <td width="100"><a class="btn btn-primary" href="{{ route('ordenes.detalleEntrega', $entrega) }}">
                             <span class="comments-count">
                                 Detalle
                             </span>
@@ -69,7 +69,29 @@
             @endforeach
                 
                 </table>
-
+<br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
         </div>
     </div>
 </div>

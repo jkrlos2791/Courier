@@ -40,7 +40,7 @@ Route::get('/ordenes_proceso', [
     'uses' => 'OrdenController@enProceso',
                 ]);
 
-Route::get('/orden/{id}', [
+Route::get('/orden_detalle/{id}', [
     'as' => 'ordenes.detalle',
     'uses' => 'OrdenController@detalle',
                 ]);
@@ -59,6 +59,26 @@ Route::post('/nueva_orden', [
     'as' => 'ordenes.store',
     'uses' => 'OrdenController@store',
                 ]);
+    
+Route::get('/orden/{id}', [
+    'as' => 'ordenes.edit',
+    'uses' => 'OrdenController@edit',
+                ]);
+    
+Route::post('/orden/{id}', [
+    'as' => 'ordenes.update',
+    'uses' => 'OrdenController@update',
+                ]);
+    
+Route::get('/nueva_entrega/{id}', [
+    'as' => 'entregas.create',
+    'uses' => 'EntregaController@create',
+                ]); 
+    
+Route::patch('/nueva_entrega/{id}', [
+    'as' => 'entregas.store',
+    'uses' => 'EntregaController@store',
+                ]);        
     
 Route::get('/exportar_ordenes', [
     'as' => 'ordenes.exportar',

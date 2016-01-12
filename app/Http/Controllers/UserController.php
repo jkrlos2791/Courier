@@ -96,7 +96,7 @@ class UserController extends Controller {
     
 	$user->save();
  
-	return redirect()->route('user.edit', ['user' => $id])->with('message', 'User updated');
+	return redirect()->route('user.edit', ['user' => $id])->with('message', 'El usuario ha sido actualizado.');
         
     }
 

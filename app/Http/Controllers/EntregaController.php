@@ -10,14 +10,14 @@ use JLcourier\Http\Requests;
 
 use JLcourier\Http\Controllers\Controller;
     
-use Illuminate\Http\Request; 
 
 use Maatwebsite\Excel\Facades\Excel;
 
 use Carbon\Carbon;
 use DB;
+use Request;
 
-class OrdenController extends Controller
+class EntregaController extends Controller
 {
     
     public function exportar()
@@ -67,34 +67,50 @@ class OrdenController extends Controller
         return view('entregas/details', compact('entrega'));
     }
     
-    public function create()
+    public function create($id)
     {
+        $orden = OrdenServicio::findOrFail($id);
+        //$fecha = Carbon::now();
         
-        $fecha = Carbon::now();
+        //$orden_id = 1 + DB::table('orden_servicios')->max('nro_orden');;
         
-        $orden_id = 1 + DB::table('orden_servicios')->max('nro_orden');;
-        
-        return view('ordenes/create', compact('fecha', 'orden_id'));
+        return view('entregas/create', compact('orden'));
     }
     
-    public function store(Request $request)
+    public function store(Request $request, $id)
+  {
+	$entrega = new \JLcourier\Entities\Entrega;
+ 
+	$entrega->cliente_final = \Request::input('cliente_final');
+        
+    $entrega->direccion_destino = \Request::input('direccion_destino');
+        
+    $entrega->destino = \Request::input('destino');
+	
+	$entrega->recepcionado_por = \Request::input('recepcionado_por');
+
+    $entrega->responsable_entrega = \Request::input('responsable_entrega');
+        
+    $orden = \JLcourier\Entities\OrdenServicio::find($id);      
+        
+    //$entrega->orden_servicio_id = $orden->id;        
+ 
+	//$entrega->save();
+        
+    $entrega = $orden->entregas()->save($entrega);        
+          
+    foreach (Request::get('cantidad') as $key => $val) 
     {
-       $orden = new \JLcourier\Entities\OrdenServicio;
- 
-	$orden->cliente_id = \Request::input('cliente_id');
+        $item = new \JLcourier\Entities\ItemEntrega;
+        $item->cantidad = \Request::input("cantidad.$key");
+        $item->peso = \Request::input("peso.$key");
+        $item->envio = \Request::input("envio.$key");
+        $item->descripcion = \Request::input("descripcion.$key");
+        $item = $entrega->items()->save($item);
+    } 
         
-    $orden->fecha_inicio = \Request::input('fecha_inicio');
-        
-    $orden->nro_orden = \Request::input('nro_orden');
-        
-    $orden->tipo = \Request::input('tipo');
-        
-    $orden->tiempo = \Request::input('tiempo');
- 
-	$orden->save();
- 
-	return redirect()->action('\JLcourier\Http\Controllers\OrdenController@ultimas');
-    }
+	return redirect()->action('\JLcourier\Http\Controllers\OrdenController@detalle', ['user' => $id]);
+	}
     
     public function edit($id)
     {

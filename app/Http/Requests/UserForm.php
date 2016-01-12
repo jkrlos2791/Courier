@@ -22,7 +22,8 @@ class UserForm extends Request {
 	public function rules()
 	{
 		return [
-			"name" => "required|min:5|max:45" 
+			"name" => "required|min:3|max:45",
+            "email" => "required|email|unique:users"
 		];
 	}
     
@@ -30,9 +31,12 @@ class UserForm extends Request {
 	{
 	    return [
             
-	        'name.required' => 'El campo nombre es requerido!',
-	        'name.min' => 'El nombre title no puede tener menos de 5 carácteres',
-			'name.max' => 'El nombre title no puede tener más de 45 carácteres',
+	        'name.required' => 'El campo nombre es requerido.',
+	        'name.min' => 'El campo nombre no puede tener menos de 3 carácteres.',
+			'name.max' => 'El nombre nombre no puede tener más de 45 carácteres.',
+            'email.required' => 'El campo email es requerido.',
+            'email.email' => 'El campo email debe cumplir el siguiente formato: nombre@dominio.com',
+            'email.unique' => 'El campo email ya ha sido registrado.',
 	    
         ];
 	}

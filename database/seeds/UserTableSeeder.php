@@ -22,7 +22,7 @@ class UserTableSeeder extends BaseSeeder
     public function run()
     {
         $this->createAdmin();
-        $this->createMultiple(50);
+        //$this->createMultiple(50);
     }
 
     public function createAdmin()

@@ -22,6 +22,8 @@ class DatabaseSeeder extends Seeder {
             
         ));
         $this->call('UserTableSeeder');
+        /*
+        
         $this->call('ClienteTableSeeder');
         $this->call('ServicioTableSeeder');
         $this->call('OrdenServicioTableSeeder');
@@ -31,6 +33,7 @@ class DatabaseSeeder extends Seeder {
         $this->call('ItemEntregaTableSeeder');
         $this->call('GuiaTransporteTableSeeder');
         $this->call('ContactoTableSeeder');
+        */
     }
 
     public function truncateTables(array $tables)

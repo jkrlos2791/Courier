@@ -5,9 +5,9 @@
         <div class="col-md-10 col-md-offset-1">
     <div class="row">
                     <div class="col-md-12">
-                        <h1>
+                        <h3>
                     Usuarios
-                </h1>
+                </h3>
 	@if (Session::has('message'))
 	        <div class="alert alert-success">{{ Session::get('message') }}</div>
 	@endif 
@@ -38,7 +38,32 @@
       @endif
 				</div>
 	</div>
-            <hr>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+             <br/>
+            <br/>
+            <br/>
+            <br/>
+             <br/>
+            <br/>
+            <br/>
+            <br/>
+             <br/>
+            <br/>
+            <br/>
+            <br/>
             </div>
         </div>
 </div>
