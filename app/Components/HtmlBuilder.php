@@ -41,6 +41,20 @@ class HtmlBuilder extends CollectiveHtmlBuilder
         
     }
     
+    public function nav($items){
+        
+        if(! is_array($items))
+        {
+        
+        $items = $this->config->get($items, array());
+            
+        }
+        
+        
+        return $this->view->make('partials/nav', compact('items'));
+        
+    }
+    
         /**
      * Builds an HTML class attribute dynamically
      * Usage:

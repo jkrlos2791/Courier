@@ -18,7 +18,7 @@
                 <table class="table table-bordered">
               <tr>
                 <th>Fecha</th>
-                 <th>Nro. de Orden</th>
+                 <th>N° de Orden</th>
                   <th>Tipo</th>
                   <th>Tiempo</th>
                   <th>Cliente</th>

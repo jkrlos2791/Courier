@@ -17,6 +17,7 @@ class CreateClientesTable extends Migration {
 			$table->increments('id');
             $table->string('nombre');
             $table->string('direccion');
+            $table->enum('tipo', ['jurídica', 'natural']);
             $table->string('ruc');
             $table->string('banco')->nullable();
 			$table->timestamps();

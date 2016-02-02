@@ -21,6 +21,11 @@ class ViewServiceProvider extends ServiceProvider {
             'ordenes/update',
             'JLcourier\Http\ViewComposers\MakeModelForm'
         );
+        
+        $this->app->make('view')->composer(
+            'cotizaciones/create',
+            'JLcourier\Http\ViewComposers\MakeCotizacionForm'
+        );
 	}
 
 	/**

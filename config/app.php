@@ -141,7 +141,9 @@ return [
          * Vendor Service Providers...
          */
         'Maatwebsite\Excel\ExcelServiceProvider',
-        
+        'Barryvdh\DomPDF\ServiceProvider',
+        'Barryvdh\Snappy\ServiceProvider',
+     
 		/*
 		 * Application Service Providers...
 		 */
@@ -201,12 +203,11 @@ return [
 		'URL'       => 'Illuminate\Support\Facades\URL',
 		'Validator' => 'Illuminate\Support\Facades\Validator',
 		'View'      => 'Illuminate\Support\Facades\View',
-        
-        'Form' => 'Collective\Html\FormFacade',
-        'Html' => 'Collective\Html\HtmlFacade',
-        
-        'Excel' => 'Maatwebsite\Excel\Facades\Excel',
-
+        'Form'      => 'Collective\Html\FormFacade',
+        'Html'      => 'Collective\Html\HtmlFacade',
+        'Excel'     => 'Maatwebsite\Excel\Facades\Excel',
+        'PDF' => 'Barryvdh\Snappy\Facades\SnappyPdf',
+        'Image' => 'Barryvdh\Snappy\Facades\SnappyImage',
 	],
 
 ];

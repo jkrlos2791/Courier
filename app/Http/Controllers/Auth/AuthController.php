@@ -39,5 +39,10 @@ class AuthController extends Controller {
 	{
 		return '/';
 	}
+    
+    protected function getFailedLoginMessage()
+	{
+		return 'Estas credenciales no son válidas.';
+	}
 
 }

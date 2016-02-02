@@ -3,11 +3,15 @@
 @section('content')
 <div class="container">
      <div class="row">
-     <div class="col-md-12 col-md-offset-1">
+     <div class="col-md-10 col-md-offset-1">
          <h3>
         Items
         @include('entregas/partials/status', compact('entrega'))
-        </h3>
+         <a href="{{ route('item.create', $entrega) }}" class="btn btn-primary pull-right">
+                 <span class="glyphicon glyphicon-plus">
+                            </span> Nueva
+             </a>
+         </h3>
          </div>
      </div>
     
@@ -28,13 +32,16 @@
     
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
-            
-            <table class="table table-bordered">
+            @if (Session::has('message'))
+	            <div class="alert alert-success">{{ Session::get('message') }}</div>
+	            @endif   
+            <table class="table table-hover">
               <tr>
                 <th>Cantidad</th>
                  <th>Peso</th>
                   <th>Envio</th>
                   <th>Descripción</th>
+                  <th colspan="2">Acciones</th>
                     </tr>
             
             @foreach ($entrega->items as $item)
@@ -45,7 +52,19 @@
      <td width="100">{{ $item->peso }} kg</td>
      <td width="500">{{ $item->envio }}</td>
      <td width="500">{{ $item->descripcion }}</td>
-     
+                    <td>
+        <a class="btn btn-primary" href="{{ route('item.edit', $item) }}">
+                            <span class="glyphicon glyphicon-pencil">
+                            </span>
+                        </a>
+                </td>
+                <td>
+        {!! Form::open(array('route' => array('item.destroy', $item->id), 'method' => 'DELETE')) !!}
+                          <button type="submit" class="btn btn-default">
+                              <span class="glyphicon glyphicon-trash">
+                            </span></button>
+                      {!! Form::close() !!}
+                </td> 
 </tr>
             
             @endforeach

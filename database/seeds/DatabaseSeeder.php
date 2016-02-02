@@ -19,6 +19,9 @@ class DatabaseSeeder extends Seeder {
              'item_entregas',
              'guia_transportes',
              'contactos',
+             'cotizacions',
+             'detalle_cotizacions',
+             'adicional_cotizacions',
             
         ));
         $this->call('UserTableSeeder');

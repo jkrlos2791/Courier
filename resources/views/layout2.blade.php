@@ -31,16 +31,26 @@
                   </a>
               </li>
               <li class="link">
+              <a href="#collapse-cotizacion" data-toggle="collapse" aria-controls="colapse-orden">
+                  <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                  <span>Cotizaciones</span>
+                  </a>
+                  <ul class="collapse collapseable" id="collapse-cotizacion">
+                      <li><a href="{{ url('/cotizaciones') }}">Ver Cotizaciones</a></li>
+                      <li><a href="{{ url('/cotizacion/create') }}">Nueva Cotización</a></li>
+                  </ul>
+              </li>
+              <li class="link">
               <a href="#collapse-orden" data-toggle="collapse" aria-controls="colapse-orden">
-                  <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
+                  <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
                   <span class="hidden-sm hidden-xs">Ordenes</span>
                   {{-- <span class="label label-success pull-right">20</span> --}}
                   </a>
                   <ul class="collapse collapseable" id="collapse-orden">
                       <li><a href="{{ url('/') }}">Ver Ordenes</a></li>
-                      <li><a href="{{ url('/ordenes_proceso') }}">En proceso
-                          <li><a href="{{ route('ordenes.create') }}">Nueva Orden</a></li>
-                          {{-- <span class="label label-warning pull-right">{{ Auth::user()->name }}</span></a></li> --}}
+                      <li><a href="{{ route('ordenes.create') }}">Nueva Orden</a></li>
+                      {{-- <li><a href="{{ url('/ordenes_proceso') }}">En proceso
+                           <span class="label label-warning pull-right">{{ Auth::user()->name }}</span></a></li> --}}
                       <li><a href="{{ url('/exportar_ordenes') }}">Exportar Ordenes</a></li>
                   </ul>
               </li>
@@ -63,7 +73,7 @@
                   <ul class="collapse collapseable" id="collapse-usuario">
                       <li><a href="{{ url('/user') }}">Ver Usuarios</a></li>
                       <li><a href="{{ url('/user/create') }}">Nuevo Usuario</a></li>
-                      {{-- <li><a href="{{ url('/exportar_clientes') }}">Exportar Usuarios</a></li> --}}
+                      <li><a href="{{ url('/exportar_usuarios') }}">Exportar Usuarios</a></li>
                   </ul>
               </li>
                {{--<li class="link">
@@ -147,18 +157,41 @@
 <link href="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.1/css/select2.min.css" rel="stylesheet" />
 <script src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.1/js/select2.min.js"></script>
 <script type="text/javascript">
-  $('select').select2();
+  //$('select').select2();
+$(document).ready(function(){
+    
+        $('select').select2();
+        
+        $.fn.populateSelect = function(values){
+            var options = '';
+            $.each(values, function(key, row){
+                options += '<option value="' + row.value + '">' + row.text + '</option>';     
+            });
+            $(this).html(options);
+        }
+     
+        $('#cliente_id').change(function(){
+           var cliente_id = $(this).val();
+            if(cliente_id == ''){
+               //$('#contacto_id').empty();
+            }else{
+               $.getJSON('/contactos/'+cliente_id, null, function(values){
+                    $('#contacto_id').populateSelect(values);
+               });
+            }
+        });
+    });    
 </script>      
 <script>
 $(function () {
 			    var scntDiv = $('#dynamicDiv');
 			    $(document).on('click', '#addInput', function () {
 			        $('<tr>'+
-                        '<td><input class="form-control" type="text" id="inputeste" size="20" value="" placeholder="" name="contacto[]" /></td> '+
-		        		'<td><input class="form-control" type="text" id="inputeste" size="20" value="" placeholder="" name="fijo[]" /> </td>'+
-                        '<td><input class="form-control" type="text" id="inputeste" size="20" value="" placeholder="" name="celular[]" /></td> '+
-		        		'<td><a class="btn btn-danger" href="javascript:void(0)" id="remInput">'+
-							'<span class="glyphicon glyphicon-minus" aria-hidden="true"></span> '+
+                        '<td><input class="form-control" type="text" id="inputeste" size="20" value="" placeholder="Ejm: Juan Ramos" name="contacto[]" /></td> '+
+		        		'<td><input class="form-control" type="text" id="inputeste" size="20" value="" placeholder="Ejm: 123-4567" name="fijo[]" /> </td>'+
+                        '<td><input class="form-control" type="text" id="inputeste" size="20" value="" placeholder="Ejm: 987654321" name="celular[]" /></td> '+
+		        		'<td><a class="btn btn-default" href="javascript:void(0)" id="remInput">'+
+							'<span class="glyphicon glyphicon-trash" aria-hidden="true"></span> '+
 		        		'</a></td>'+
 					'</tr>').appendTo(scntDiv);
 			        return false;
@@ -176,8 +209,8 @@ $(function () {
 		        		'<td><input class="form-control" type="text" id="inputeste" size="20" value="" placeholder="" name="peso[]" /> </td>'+
                         '<td><input class="form-control" type="text" id="inputeste" size="20" value="" placeholder="" name="envio[]" /></td> '+
                       '<td><input class="form-control" type="text" id="inputeste" size="20" value="" placeholder="" name="descripcion[]" /></td> '+
-		        		'<td><a class="btn btn-danger" href="javascript:void(0)" id="remInput">'+
-							'<span class="glyphicon glyphicon-minus" aria-hidden="true"></span> '+
+		        		'<td><a class="btn btn-default" href="javascript:void(0)" id="remInput">'+
+							'<span class="glyphicon glyphicon-trash" aria-hidden="true"></span> '+
 		        		'</a></td>'+
 					'</tr>').appendTo(scntDiv);
 			        return false;
@@ -186,7 +219,48 @@ $(function () {
 		            $(this).parents('tr').remove();
 			        return false;
 			    });
-			});    
+			}); 
+   //////////////////////////////////////////////////////////// 
+    $(function () {
+			    var scntDiv = $('#detalleCotizacion');
+			    $(document).on('click', '#addInput', function () {
+			        $('<tr>'+
+                        '<td class="col-md-1"><input class="form-control" type="text" placeholder="Und." name="cantidad[]" /></td>'+
+		        		'<td class="col-md-1"><input class="form-control" type="text" placeholder="Kg." name="peso[]" /></td>'+
+                        '<td class="col-md-1"><input class="form-control" type="text" placeholder="cm" name="largo[]" /></td>'+
+                        '<td class="col-md-1"><input class="form-control" type="text" placeholder="cm" name="ancho[]" /></td>'+
+                        '<td class="col-md-1"><input class="form-control" type="text" placeholder="cm" name="alto[]" /></td>'+
+		        		'<td class="col-md-3"><input class="form-control" type="text" placeholder="descripcion" name="descripcion[]" /></td>'+
+                        '<td class="col-md-2"><input class="form-control" type="text" placeholder="partida" name="partida[]" /></td>'+
+                        '<td class="col-md-2"><input class="form-control" type="text" placeholder="llegada" name="llegada[]" /></td>'+
+		        		'<td><a class="btn btn-default" href="javascript:void(0)" id="remInput">'+
+				        '<span class="glyphicon glyphicon-trash" aria-hidden="true"></span> '+
+		        		'</a></td>'+
+					'</tr>').appendTo(scntDiv);
+			        return false;
+			    });
+			    $(document).on('click', '#remInput', function () {
+		            $(this).parents('tr').remove();
+			        return false;
+			    });
+			});
+    $(function () {
+			    var scntDiv = $('#costosAdicionales');
+			    $(document).on('click', '#addInput2', function () {
+			        $('<tr>'+
+                        '<td class="col-md-10"><input class="form-control" type="text" placeholder="Descripcion del adicional" name="adicional[]" /></td>'+
+		        		'<td><input class="form-control" type="text" placeholder="monto" name="monto[]" /></td>'+
+		        		'<td><a class="btn btn-default" href="javascript:void(0)" id="remInput">'+
+				        '<span class="glyphicon glyphicon-trash" aria-hidden="true"></span> '+
+		        		'</a></td>'+
+					'</tr>').appendTo(scntDiv);
+			        return false;
+			    });
+			    $(document).on('click', '#remInput', function () {
+		            $(this).parents('tr').remove();
+			        return false;
+			    });
+			});
     </script>
 {!! Html::script('/assets/js/default.js') !!}
   </body>

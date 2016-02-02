@@ -8,12 +8,17 @@
                         <h3>
                     Usuarios
                 </h3>
+                        
+
+{!! Html::nav(config('usuarionav.tabs')) !!}
+                        
+  <br/>                      
 	@if (Session::has('message'))
 	        <div class="alert alert-success">{{ Session::get('message') }}</div>
 	@endif 
       @if(!$users->isEmpty())
                          <?php echo $users->render(); ?> 
-          <table class="table table-bordered">
+          <table class="table table-hover">
               <tr>
                  <th>Nombre</th>
                  <th>Email</th>
@@ -23,14 +28,19 @@
                   <tr>
                     <td width="500">{{ $user->name }}</td>
                       <td width="500">{{ $user->email }}</td>
-                    <td width="60" align="center">
-                      {!! Html::link(route('user.edit', $user->id), 'Editar', array('class' => 'btn btn-primary')) !!} 
+                    <td>
+                        <a class="btn btn-primary" href="{{ route('user.edit', $user) }}">
+                            <span class="glyphicon glyphicon-pencil">
+                            </span>
+                        </a>
                     </td>
-                   {{--  <td width="60" align="center">
+                    <td>
                       {!! Form::open(array('route' => array('user.destroy', $user->id), 'method' => 'DELETE')) !!} 
-                          <button type="submit" class="btn btn-danger">Eliminar</button>
+                          <button type="submit" class="btn btn-default">
+                              <span class="glyphicon glyphicon-trash">
+                            </span></button>
                       {!! Form::close() !!}
-                    </td> --}}
+                    </td> 
                   </tr>
               @endforeach
           </table>

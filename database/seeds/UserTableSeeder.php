@@ -28,9 +28,17 @@ class UserTableSeeder extends BaseSeeder
     public function createAdmin()
     {
         $this->create([
-              'name' => 'Juan Carlos',
-              'email' => 'jkrlos2791@gmail.com',
+              'name'     => 'Juan Carlos',
+              'email'    => 'jkrlos2791@gmail.com',
               'password' => bcrypt('admin'),
+              'type'     => 'admin', 
+          ]);
+        
+        $this->create([
+              'name'     => 'Lizbeth',
+              'email'    => 'sistemas2@asecoint.com.pe',
+              'password' => bcrypt('admin'),
+              'type'     => 'admin',
           ]);
     }
 }

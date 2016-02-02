@@ -49,11 +49,11 @@
                             <th>Eliminar</th>
                         </tr> 
                         <tr>
-			                  <td><input class="form-control" type="text" placeholder="Type something" name="contacto[]" /></td>
-                             <td><input class="form-control" type="text" placeholder="Type something" name="fijo[]" /></td>
-                             <td> <input class="form-control" type="text" placeholder="Type something" name="celular[]" /></td>
-			                   <td> <a class="btn btn-danger" href="javascript:void(0)" id="remInput">
-			        	             <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
+			                  <td><input class="form-control" type="text" placeholder="Ejm: Juan Ramos" name="contacto[]" /></td>
+                             <td><input class="form-control" type="text" placeholder="Ejm: 123-4567" name="fijo[]" /></td>
+                             <td> <input class="form-control" type="text" placeholder="Ejm: 987654321" name="celular[]" /></td>
+			                   <td> <a class="btn btn-default" href="javascript:void(0)" id="remInput">
+			        	             <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
 					               </a></td>
 		                </tr>
 		            </table>

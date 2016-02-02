@@ -34,7 +34,10 @@
 							</div>
 <div class="form-group">
 								<label>Entregado por</label>{!! Form::text('responsable_entrega', null , ["class" => "form-control"]) !!}
-							</div>	
+							</div>
+<div class="form-group">
+								<label>Estado</label>{!! Form::select('estado', array('En almacen' => 'En almacen', 'En ruta' => 'En ruta', 'Entregado' => 'Entregado'), null,                                                                                          ["class" => "form-control"]) !!}
+							</div>	                    
                     <a class="btn btn-primary" href="javascript:void(0)" id="addInput">
 				 <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
 				  Añadir
@@ -53,8 +56,8 @@
                              <td><input class="form-control" type="text" placeholder="" name="peso[]" /></td>
                              <td> <input class="form-control" type="text" placeholder="" name="envio[]" /></td>
                             <td> <input class="form-control" type="text" placeholder="" name="descripcion[]" /></td>
-			                   <td> <a class="btn btn-danger" href="javascript:void(0)" id="remInput">
-			        	             <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
+			                   <td> <a class="btn btn-default" href="javascript:void(0)" id="remInput">
+			        	             <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
 					               </a></td>
 		                </tr>
 		            </table>

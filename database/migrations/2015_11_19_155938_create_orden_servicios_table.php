@@ -17,10 +17,12 @@ class CreateOrdenServiciosTable extends Migration {
 			$table->increments('id');
             $table->integer('cliente_id')->unsigned()->index();
             $table->foreign('cliente_id')->references('id')->on('clientes')->onDelete('cascade');
-            $table->timestamp('fecha_inicio');
-            $table->string('nro_orden');
+            $table->date('fecha_inicio');
+            $table->integer('nro_orden');
             $table->enum('tipo', ['Local', 'Nacional']);
             $table->string('tiempo');
+            $table->string('direccion_recojo');
+            $table->string('punto_recojo');
             $table->enum('estado', ['En proceso', 'Despachado']);
 			$table->timestamps();
 		});

@@ -32,5 +32,13 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	protected $hidden = ['password', 'remember_token'];
     
     protected $guarded = ['id'];
+    
+    public function scopeNombre($query, $nombre)
+    {
+        if(trim($nombre) != "")
+        {
+        return $query->where('nombre', "LIKE", "%$nombre%");
+        }
+    }
 
 }

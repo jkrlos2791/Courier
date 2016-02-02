@@ -6,7 +6,7 @@ class OrdenServicio extends Entity {
     
     public function getDates()
     {
-    return ['created_at', 'fecha_inicio'];
+    return ['created_at'];
     }
     
     public function entregas()
@@ -21,6 +21,14 @@ class OrdenServicio extends Entity {
     
         return $this->belongsTo(Cliente::getClass());
     
-    } 
+    }
+    
+    public function scopeNombre($query, $nombre)
+    {
+        if(trim($nombre) != "")
+        {
+        return $query->where('nombre', "LIKE", "%$nombre%");
+        }
+    }
 
 }
